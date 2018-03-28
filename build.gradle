@@ -1,0 +1,39 @@
+buildscript {
+	ext {
+		springBootVersion = '1.5.10.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.sb.hive'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web')
+	compile ("io.springfox:springfox-swagger2:2.4.0")
+	compile("io.springfox:springfox-swagger-ui:2.4.0")
+	compile('org.apache.hadoop:hadoop-client:2.5.2'){
+		exclude module: 'log4j'
+    	exclude module: 'slf4j-log4j12'
+	}
+	//compile group: 'org.apache.hive', name: 'hive-jdbc', version: '0.9.0'
+	compile('org.apache.hive:hive-jdbc:0.9.0'){
+		exclude module: 'log4j'
+    	exclude module: 'slf4j-log4j12'
+	}
+}
